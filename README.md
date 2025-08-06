@@ -1,176 +1,110 @@
 # DocuMind AI 🧠📄
 
-> Intelligent Document Processing Platform combining Java microservices with AI/ML capabilities
+> **Intelligent Document Processing Platform** > _Harnessing AI to transform documents into actionable insights_
 
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.java.net/projects/jdk/21/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
-[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<div align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk" alt="Java">
+  <img src="https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen?style=for-the-badge&logo=spring" alt="Spring Boot">
+  <img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Docker-Compose-blue?style=for-the-badge&logo=docker" alt="Docker">
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License">
+</div>
 
-## 🚀 Quick Start
+## ✨ Key Features
+
+<div class="features-grid"> <div> <h3>📄 Document Processing</h3> <ul> <li>Multi-format support (PDF/DOCX/Images)</li> <li>Batch processing</li> <li>Version control</li> </ul> </div> <div> <h3>🔍 Intelligent Analysis</h3> <ul> <li>Automated classification</li> <li>Entity extraction</li> <li>Document summarization</li> </ul> </div> <div> <h3>⚡ Performance</h3> <ul> <li>Distributed processing</li> <li>Real-time status updates</li> <li>Scalable architecture</li> </ul> </div> </div>
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Java 21+
-- Python 3.11+
-- Docker & Docker Compose
-- Maven 3.9+
+| Requirement | Version | Installation Guide                                                |
+| ----------- | ------- | ----------------------------------------------------------------- |
+| Java        | 21+     | [OpenJDK](https://openjdk.java.net/install/)                      |
+| Python      | 3.11+   | [Python Docs](https://www.python.org/downloads/)                  |
+| Docker      | Latest  | [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| Maven       | 3.9+    | [Maven Install](https://maven.apache.org/install.html)            |
 
-### 1-Command Setup
+### Quick Setup
 
 ```bash
 git clone https://github.com/yourusername/documind-ai.git
 cd documind-ai
-./scripts/setup-dev.sh
+./scripts/setup-dev.sh  # Installs dependencies & configures environment
 ```
 
-### Start All Services
+### Service Dashboard
 
-```bash
-./scripts/start-services.sh
+| Service             | URL                           |
+| ------------------- | ----------------------------- |
+| API Gateway         | http://localhost:8080         |
+| Swagger UI          | http://localhost:8080/swagger |
+| RabbitMQ Management | http://localhost:15672        |
+| MinIO Console       | http://localhost:9001         |
+
+## 🏗️ System Architecture
+
+```mermaid
+graph TD
+    A[Client] --> B[API Gateway]
+    B --> C[User Service]
+    B --> D[Document Service]
+    B --> E[Processing Service]
+    D --> F[MinIO Storage]
+    E --> G[OCR Service]
+    E --> H[NLP Service]
+    E --> I[Classification Service]
+    C --> J[PostgreSQL]
+    G --> K[Redis Cache]
 ```
 
-### Access the Platform
+### Core Services
 
-- **API Gateway**: http://localhost:8080
-- **API Documentation**: http://localhost:8080/swagger-ui.html
-- **RabbitMQ Management**: http://localhost:15672
-- **MinIO Console**: http://localhost:9001
+| Service            | Port | Description                      |
+| ------------------ | ---- | -------------------------------- |
+| API Gateway        | 8080 | Unified entry point with auth    |
+| User Service       | 8081 | Authentication & user management |
+| Document Service   | 8082 | File Storage & Metadata          |
+| Processing Service | 8083 | AI Pipeline orchestration        |
 
-## 🏗️ Architecture
+### AI Modules
 
-### Microservices
+```mermaid
+pie
+    title AI Capabilities
+    "Text Extraction" : 35
+    "Classification" : 25
+    "Entity Recognition" : 20
+    "Semantic Search" : 15
+    "Summarization" : 5
+```
 
-- **API Gateway** (8080) - Request routing & authentication
-- **User Service** (8081) - User management & auth
-- **Document Service** (8082) - Document CRUD & metadata
-- **Processing Service** (8083) - Document processing orchestration
-- **Analytics Service** (8084) - Insights & reporting
-
-### AI Services
-
-- **OCR Service** (8085) - Text extraction from images/PDFs
-- **NLP Service** (8086) - Entity extraction & analysis
-- **Classification Service** (8087) - Document categorization
-
-### Infrastructure
-
-- **PostgreSQL** - Primary database
-- **Redis** - Caching & sessions
-- **RabbitMQ** - Message queuing
-- **Elasticsearch** - Document search
-- **Milvus** - Vector embeddings
-- **MinIO** - File storage
-
-## 🎯 Features
-
-### Core Functionality
-
-- ✅ Multi-format document upload (PDF, DOCX, images)
-- ✅ Intelligent document classification
-- ✅ OCR text extraction
-- ✅ Named entity recognition
-- ✅ Document summarization
-- ✅ Semantic search
-- ✅ Real-time processing status
-- ✅ Analytics dashboard
-
-### AI/ML Capabilities
-
-- 🤖 Document type classification
-- 📝 Text extraction & OCR
-- 🏷️ Named entity recognition
-- 📊 Document similarity matching
-- 📋 Automatic summarization
-- 🔍 Semantic search with embeddings
-
-## 📚 API Documentation
+## 📚 API Examples
 
 ### Document Upload
 
 ```bash
-curl -X POST http://localhost:8080/api/documents \\
--F "file=@document.pdf" \\
--H "Authorization: Bearer <token>"
+curl -X POST http://localhost:8080/api/documents \
+  -F "file=@contract.pdf" \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
-### Get Document Analysis
+### Semantic Search
 
-```bash
-curl -X GET http://localhost:8080/api/documents/{id}/analysis \\
--H "Authorization: Bearer <token>"
+```python
+import requests
+
+response = requests.get(
+  "http://localhost:8080/api/documents/search",
+  params={"q": "NDA agreement", "threshold": 0.8},
+  headers={"Authorization": f"Bearer {token}"}
+)
 ```
 
-### Search Documents
+## 📜 License
 
-```bash
-curl -X GET "http://localhost:8080/api/documents/search?q=contract&type=legal" \\
--H "Authorization: Bearer <token>"
-```
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
-## 🛠️ Development
-
-### Build All Services
-
-```bash
-./scripts/build-all.sh
-```
-
-### Run Tests
-
-```bash
-mvn test
-./scripts/test-api.sh
-```
-
-### Download ML Models
-
-```bash
-./scripts/download-models.sh
-```
-
-### Stop Services
-
-```bash
-./scripts/stop-services.sh
-```
-
-## 🚀 Deployment
-
-### Railway
-
-```bash
-./scripts/deploy.sh railway
-```
-
-### Render
-
-```bash
-./scripts/deploy.sh render
-```
-
-### AWS
-
-```bash
-./scripts/deploy.sh aws
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (\`git checkout -b feature/amazing-feature\`)
-3. Commit changes (\`git commit -m 'Add amazing feature'\`)
-4. Push to branch (\`git push origin feature/amazing-feature\`)
-5. Open Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- Hugging Face for pre-trained models
-- OpenCV community for computer vision tools
-- All open-source contributors
+<div align="center">
+  <p>Built with ❤️ by <a href="https://github.com/salgue441">Carlos Salguero</a></p>
+  <p>  </a> <a href="https://linkedin.com/in/carlossalgue"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" height="20"> </a> </p> </div>
