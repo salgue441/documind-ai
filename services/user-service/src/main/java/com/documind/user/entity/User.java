@@ -16,9 +16,9 @@ import lombok.Setter;
  * authentication details, personal information, and account status flags. It provides methods for
  * managing user account security and status.
  *
- * @author [Your Name]
+ * @author Carlos Salguero
  * @version 1.0
- * @since [YYYY-MM-DD]
+ * @since 2025-08-06
  */
 @Entity
 @Table(name = "users", schema = "users")
