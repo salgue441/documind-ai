@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "security:openssf-scorecard", ":dependencyDashboard", ":semanticCommits"],
+  "schedule": ["before 6am on monday"],
+  "timezone": "America/Mexico_City",
+  "labels": ["dependencies"],
+  "assignees": ["yourusername"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^org.springframework"],
+      "groupName": "spring framework"
+    },
+    {
+      "matchPackagePatterns": ["^com.fasterxml.jackson"],
+      "groupName": "jackson"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchDepTypes": ["test"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true
+    }
+  ],
+  "maven": {
+    "enabled": true
+  },
+  "pip_requirements": {
+    "enabled": true
+  },
+  "docker": {
+    "enabled": true
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true
+  }
+}
