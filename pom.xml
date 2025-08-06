@@ -25,6 +25,7 @@
     <mapstruct.version>1.5.5.Final</mapstruct.version>
     <testcontainers.version>1.19.7</testcontainers.version>
     <openapi.version>2.5.0</openapi.version>
+    <spotless.version>2.43.0</spotless.version>
   </properties>
 
   <modules>
@@ -121,8 +122,31 @@
           <artifactId>dockerfile-maven-plugin</artifactId>
           <version>1.4.13</version>
         </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless.version}</version>
+          <configuration>
+            <java>
+              <googleJavaFormat>
+                <version>1.19.2</version>
+                <style>GOOGLE</style>
+              </googleJavaFormat>
+              <removeUnusedImports />
+              <trimTrailingWhitespace />
+              <endWithNewline />
+              <formatAnnotations />
+            </java>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
