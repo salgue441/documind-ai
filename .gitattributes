@@ -1,0 +1,138 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Java files
+*.java text diff=java
+*.class binary
+*.jar binary
+*.war binary
+*.ear binary
+
+# XML files (Maven, Spring configuration)
+*.xml text
+*.xsd text
+*.xsl text
+*.xslt text
+
+# Properties files
+*.properties text
+
+# YAML files
+*.yml text
+*.yaml text
+
+# JSON files
+*.json text
+
+# Python files
+*.py text diff=python
+*.pyx text diff=python
+*.pxd text diff=python
+*.pxi text diff=python
+*.pyc binary
+*.pyo binary
+
+# Python requirements and config
+requirements*.txt text
+*.cfg text
+*.ini text
+setup.py text
+setup.cfg text
+pyproject.toml text
+Pipfile text
+Pipfile.lock text -diff
+
+# Jupyter Notebooks
+*.ipynb text
+
+# SQL files
+*.sql text
+
+# Docker files
+Dockerfile* text
+docker-compose*.yml text
+docker-compose*.yaml text
+.dockerignore text
+
+# Documentation
+*.md text diff=markdown
+*.txt text
+*.adoc text
+*.tex text
+
+# Web files
+*.html text diff=html
+*.css text diff=css
+*.js text
+*.ts text
+*.jsx text
+*.tsx text
+*.vue text
+
+# Configuration files
+.editorconfig text
+.gitconfig text
+.gitignore text
+.gitattributes text
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+*.fish text eol=lf
+
+# Windows batch files
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+
+# ML Model files (binary)
+*.bin binary
+*.safetensors binary
+*.onnx binary
+*.pt binary
+*.pth binary
+*.pkl binary
+*.h5 binary
+*.pb binary
+
+# Data files
+*.csv text
+*.tsv text
+*.dat binary
+*.parquet binary
+
+# Archive files
+*.tar binary
+*.tgz binary
+*.tar.gz binary
+*.tar.bz2 binary
+*.tar.xz binary
+
+# Exclude files from exporting
+.gitattributes export-ignore
+.gitignore export-ignore
+.github/ export-ignore
+docs/ export-ignore
+tests/ export-ignore
+*.md export-ignore
