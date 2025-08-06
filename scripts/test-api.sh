@@ -18,9 +18,9 @@ test_endpoint() {
     local endpoint=$2
     local data=$3
     local expected_status=$4
-    
+
     echo -e "${YELLOW}Testing: $method $endpoint${NC}"
-    
+
     if [ "$method" = "GET" ]; then
         response=$(curl -s -w "%{http_code}" "$BASE_URL$endpoint")
     elif [ "$method" = "POST" ]; then
@@ -30,10 +30,10 @@ test_endpoint() {
     elif [ "$method" = "DELETE" ]; then
         response=$(curl -s -w "%{http_code}" -X DELETE "$BASE_URL$endpoint")
     fi
-    
+
     status_code="${response: -3}"
     body="${response%???}"
-    
+
     if [ "$status_code" = "$expected_status" ]; then
         echo -e "${GREEN}✅ SUCCESS: $status_code${NC}"
     else
@@ -58,7 +58,7 @@ test_endpoint "POST" "/users/register" '{"username":"testuser","email":"test@exa
 test_endpoint "POST" "/users/login" '{"email":"test@example.com","password":"password123"}' "200"
 test_endpoint "GET" "/users/profile" "" "200"
 
-# Document Service Tests  
+# Document Service Tests
 echo "📄 Document Service Tests:"
 test_endpoint "GET" "/documents" "" "200"
 test_endpoint "POST" "/documents" '{"name":"test-document.pdf","type":"PDF","size":1024}' "201"
