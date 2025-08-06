@@ -30,8 +30,8 @@
 
   <modules>
     <module>shared/common-lib</module>
-    <!-- <module>services/api-gateway</module>
     <module>services/user-service</module>
+    <!-- <module>services/api-gateway</module>
     <module>services/document-service</module>
     <module>services/processing-service</module>
     <module>services/analytics-service</module> -->
