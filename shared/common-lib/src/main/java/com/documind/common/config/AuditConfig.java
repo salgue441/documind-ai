@@ -1,33 +1,34 @@
 package com.documind.common.config;
 
 import java.util.Optional;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Configuration for JPA auditing to automatically populate createdBy/modifiedBy fields.
  *
- * <p>Integrates with Spring Security to track the current user for audit purposes. Falls back to
- * "system" when no authenticated user is available.
+ * <p>This configuration is disabled by default to allow individual services to configure their own
+ * auditing without conflicts.
  *
- * @see EnableJpaAuditing
  * @see AuditorAware
  */
 @Configuration
-@EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class AuditConfig {
 
   /**
-   * Provides an AuditorAware implementation for JPA auditing.
+   * Provides an AuditorAware implementation for JPA auditing. Uses @ConditionalOnMissingBean to
+   * avoid bean conflicts. Disabled by default - services should provide their own auditorProvider.
    *
    * @return AuditorAware bean that retrieves current user from security context
    */
   @Bean
-  public AuditorAware<String> auditorProvider() {
+  @ConditionalOnMissingBean(name = "auditorProvider")
+  public AuditorAware<String> defaultAuditorProvider() {
     return new SpringSecurityAuditorAware();
   }
 
@@ -42,6 +43,7 @@ public class AuditConfig {
      *
      * @return Optional containing current username or "system" if not authenticated
      */
+    @NonNull
     @Override
     public Optional<String> getCurrentAuditor() {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

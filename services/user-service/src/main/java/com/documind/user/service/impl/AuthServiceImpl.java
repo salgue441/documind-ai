@@ -1,5 +1,6 @@
 package com.documind.user.service.impl;
 
+import com.documind.common.exception.ResourceNotFoundException;
 import com.documind.common.exception.UnauthorizedException;
 import com.documind.common.security.JwtUtil;
 import com.documind.user.dto.LoginRequest;
@@ -129,7 +130,7 @@ public class AuthServiceImpl implements AuthService {
       String username = jwtUtil.getUsernameFromToken(token);
       return jwtUtil.validateToken(token, username);
     } catch (Exception e) {
-      log.debug("Token validation failed: {}", e.getMessage());
+      log.debug("JWT validation failed: {}", e.getMessage());
       return false;
     }
   }

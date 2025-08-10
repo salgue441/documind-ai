@@ -1,5 +1,13 @@
 package com.documind.user.service;
 
+import com.documind.common.enums.UserRole;
+import com.documind.user.dto.RegisterRequest;
+import com.documind.user.dto.UpdatePasswordRequest;
+import com.documind.user.dto.UserDto;
+import java.util.UUID;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 /**
  * Service interface for user management operations.
  *

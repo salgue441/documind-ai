@@ -17,7 +17,7 @@
   <description>User authentication and management service</description>
 
   <dependencies>
-    <!-- Common Library -->
+    <!-- Common Library - contains shared configurations -->
     <dependency>
       <groupId>com.documind</groupId>
       <artifactId>common-lib</artifactId>
@@ -48,6 +48,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Database -->

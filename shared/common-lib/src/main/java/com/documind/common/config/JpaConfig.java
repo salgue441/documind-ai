@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 /**
  * JPA configuration class enabling auditing support.
  *
- * <p>Note: The actual auditor provider is configured in {@link AuditConfig}. This class exists to
- * enable JPA auditing at the repository level.
- *
- * @see EnableJpaAuditing
- * @see AuditConfig
+ * <p>Provides JPA auditing configuration with Spring Security integration for automatic
+ * createdBy/updatedBy field population.
  */
 @Configuration
-@EnableJpaAuditing
-public class JpaConfig {}
+@EnableJpaAuditing(auditorAwareRef = "auditorProvider")
+public class JpaConfig {
+  // JPA auditing is now configured in individual services
+  // to avoid bean conflicts and circular dependencies
+}

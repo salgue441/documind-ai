@@ -1,7 +1,6 @@
 package com.documind.user.security;
 
 import com.documind.common.security.JwtUtil;
-import com.documind.user.service.AuthService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
  *
  * <ul>
  *   <li>Extracts JWT tokens from Authorization header
- *   <li>Validates tokens using AuthService
+ *   <li>Validates tokens using JwtUtil directly
  *   <li>Sets up Spring Security context for authenticated users
  *   <li>Adds user attributes to the request for downstream use
  * </ul>
@@ -42,7 +41,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   private final JwtUtil jwtUtil;
-  private final AuthService authService;
 
   /**
    * Processes each request to extract and validate JWT tokens.
@@ -62,7 +60,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     String token = getTokenFromRequest(request);
 
-    if (token != null && authService.validateToken(token)) {
+    if (token != null && isValidToken(token)) {
       try {
         authenticateRequest(request, token);
       } catch (Exception e) {
@@ -85,6 +83,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     return StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")
         ? bearerToken.substring(7)
         : null;
+  }
+
+  /**
+   * Validates the JWT token using JwtUtil.
+   *
+   * @param token the token to validate
+   * @return true if token is valid, false otherwise
+   */
+  private boolean isValidToken(String token) {
+    try {
+      String username = jwtUtil.getUsernameFromToken(token);
+      return jwtUtil.validateToken(token, username);
+    } catch (Exception e) {
+      log.debug("Token validation failed: {}", e.getMessage());
+      return false;
+    }
   }
 
   /**

@@ -51,7 +51,7 @@ public class SecurityConfig {
   }
 
   /**
-   * Configures the authentiation manager bean.
+   * Configures the authentication manager bean.
    *
    * @param authConfig AuthenticationConfiguration provided by Spring
    * @return AuthenticationManager instance
@@ -69,7 +69,7 @@ public class SecurityConfig {
    * <p>Sets up:
    *
    * <ul>
-   *   <li>CSRF protectedion disabled (for JWT)
+   *   <li>CSRF protection disabled (for JWT)
    *   <li>CORS configuration
    *   <li>Stateless session management
    *   <li>Exception handling for authentication failures
@@ -83,6 +83,7 @@ public class SecurityConfig {
    */
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
     http.csrf(AbstractHttpConfigurer::disable)
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .sessionManagement(

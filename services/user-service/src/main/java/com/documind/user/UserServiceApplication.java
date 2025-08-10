@@ -12,11 +12,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * <p>This Spring Boot application handles user authentication and management functionalities. It
  * configures component scanning, entity scanning, JPA repositories, and caching.
  *
+ * <p>JPA auditing is configured in the shared common-lib configuration.
+ *
  * @author Carlos Salguero
  * @version 1.0
  * @since 2025-08-06
  */
-@SpringBootApplication(scanBasePackages = {"com.documind.user", "com.documind.common"})
+@SpringBootApplication(
+    scanBasePackages = {"com.documind.user", "com.documind.common"},
+    exclude = {
+      org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration.class
+    })
 @EntityScan(basePackages = {"com.documind.user.entity", "com.documind.common.entity"})
 @EnableJpaRepositories(basePackages = "com.documind.user.repository")
 @EnableCaching
