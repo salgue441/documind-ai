@@ -22,7 +22,7 @@
     <maven.compiler.target>21</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <lombok.version>1.18.30</lombok.version>
-    <mapstruct.version>1.5.5.Final</mapstruct.version>
+    <mapstruct.version>1.6.3</mapstruct.version>
     <testcontainers.version>1.19.7</testcontainers.version>
     <openapi.version>2.5.0</openapi.version>
     <spotless.version>2.43.0</spotless.version>
